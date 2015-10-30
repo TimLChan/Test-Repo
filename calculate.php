@@ -1,1 +1,3 @@
-// Calculator function
+<?php
+echo 2 + 2;
+?>
