@@ -1,1 +1,3 @@
-//todo main file
+<?php
+echo "hello world?";
+?>
