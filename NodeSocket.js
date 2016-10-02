@@ -30,8 +30,8 @@ function NodeSocket(host, port, ssl) {
     });
 
     var self = this;
-    this.ConnectAsync = function(rawData) { 
-        rdCb = rawData || function() { };  
+    this.ConnectAsync = function(rawData) {
+        rdCb = rawData || function() { };
         if (!ssl)
             socket = net.createConnection( port, host, function() { connectedState = true; console.log("connected"); });
         else
@@ -73,29 +73,29 @@ function NodeSocket(host, port, ssl) {
     }
 
     var queue = new PriorityQueue({
-        comparator: function(a, b) { 
+        comparator: function(a, b) {
             return a.timestamp-b.timestamp;
         }});
 
-    var interval = 700; // time to space each method apart by for priority queue ordering.
+    var interval = 800; // time to space each method apart by for priority queue ordering.
 
     // Can accept a string or an array of strings to send.
     // Please use an array of strings to take use of the prioity queue.
-    // You can also send in a {"timestamp":int, "message":string} object where 
+    // You can also send in a {"timestamp":int, "message":string} object where
     // timestamp is an epoch timestamp in milliseconds (normal epoch * 1000 or new Date().getTime())
     this.write = function(message) {
         var date = new Date().getTime();
         if (typeof message == "string") {
             if (queue.length == 0) {
-                if (Core.displayNetworkOut) console.log(" |=> ", "'" + message + "'");  
+                if (Core.displayNetworkOut) console.log(" |=> ", "'" + message + "'");
                 this.Writer.write(message + "\r\n");
             }
-            else 
+            else
                 queue.queue({"timestamp":date, "message":message});
         }
         else if (message.constructor === Array) {
             if (message.length == 1 && queue.length == 0) {
-                if (Core.displayNetworkOut) console.log(" |=> ", "'" + message + "'");  
+                if (Core.displayNetworkOut) console.log(" |=> ", "'" + message + "'");
                 this.Writer.write(message + "\r\n");
             }
             else {
@@ -103,14 +103,14 @@ function NodeSocket(host, port, ssl) {
                     queue.queue({"timestamp":date + (interval * i), "message":message[i]});
                 }
             }
-    
+
         }
         else {
             queue.queue({"timestamp":message.timestamp, "message":message.message});
         }
     }
 
-    
+
     this.__defineGetter__("Reader", function() {
         throw "You must implement Reader";
     });
@@ -127,7 +127,7 @@ function NodeSocket(host, port, ssl) {
         if (queue.length > 0 ) {
             var msg = queue.dequeue().message;
 
-            if (Core.displayNetworkOut) console.log(" |=> ", "'" + msg + "'");  
+            if (Core.displayNetworkOut) console.log(" |=> ", "'" + msg + "'");
             this.Writer.write(msg + "\r\n");
         }
     }
