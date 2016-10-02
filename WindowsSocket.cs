@@ -61,7 +61,7 @@ public class WinSocket : ISocketWrapper
     private TcpClient sock;
     private string host;
     private int port;
-    private bool secure = false;
+    private bool secure = true;
 
     //private NetworkStream ns;
     private System.Net.Security.SslStream sslStream;
