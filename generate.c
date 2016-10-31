@@ -1,3 +1,11 @@
+/*
+Name: Nehal Patel
+Class: CS 102
+Date: October 30, 2016
+Program: Assignment 8
+Description: Print numbers in a pattern
+*/
+
 #include <stdio.h>
 int main() {
     int choice;
