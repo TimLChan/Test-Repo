@@ -16,7 +16,7 @@ int main() {
         scanf("%d", &choice);
         printf("Enter an integer: ");
         scanf("%d", &input);
-        
+
         int multiple_index = 0;
         int multiple = 0;
         switch (choice) {
@@ -38,14 +38,14 @@ int main() {
                 } while (multiple <= input);
 
                 break;
-            case 3: 
+            case 3:
                 // generate numbers other than multiples of 3 till input
                 for (int i = 0; i <= input; i++) {
                     if ((i % 3) > 0) {
                         printf("%d ", i);
                     }
                 }
-                
+
                 break;
             case 4:
                 // generate numbers and break out of the loop when it encounters input/2
@@ -56,6 +56,14 @@ int main() {
                         break;
                     }
                 }
+
+                break;
+            case 5:
+                do {
+                    printf("%d ", multiple);
+                    multiple_index = multiple_index + 1;
+                    multiple = 5 * multiple_index;
+                } while (multiple <= input);
 
                 break;
             default:
