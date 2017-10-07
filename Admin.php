@@ -60,7 +60,7 @@ if ( $oRes !== false )
                 for ( $x = $aServer[ $iAServerId][ 'min_slots' ]; $x <= $aServer[ $iAServerId][ 'max_slots' ]; $x++ )
                 {
                     if ( $x == $aInfo[ 'slots' ] )
-                        echo '<option value="' . $x . '" selected="selected">' . $x . '</option>';
+                        echo '<option value="' . $x . '" selected>' . $x . '</option>';
                     else
                         echo '<option value="' . $x . '">' . $x . '</option>';
                 }
@@ -96,7 +96,7 @@ if ( $oRes !== false )
                 if ( $aInfo[ 'server_id' ] != $iId )
                     echo '<option value="' . $iId . '">' . $aServ[ 'ip' ] . '</option>';
                 else
-                    echo '<option value="' . $iId . '" selected="selected" >' . $aServ[ 'ip' ] . '</option>';
+                    echo '<option value="' . $iId . '" selected >' . $aServ[ 'ip' ] . '</option>';
             }
 
             ?>
@@ -177,7 +177,7 @@ if ( $oRes !== false )
 </form>
 <?php
 $oRes = $MySQL -> selectOne( 'order_comments', '`server` = ' . $iId );
-if ( $oRes !== false )
+if ( $oRes )
 {
     echo '<h3>Order Comments</h3>' . stripslashes( $oRes[ 'comment' ] );
 }
