@@ -114,7 +114,7 @@ if ( $oRes !== false )
             $bActive = false;
             if ( $aInfo[ 'active' ] == 1 )
             {
-                $sActYes = 'checked="checked"';
+                $sActYes = 'checked';
                 $sActNo = '';
                 $sActPay = '';
             }
@@ -122,12 +122,12 @@ if ( $oRes !== false )
             {
                 $sActYes = '';
                 $sActNo = '';
-                $sActPay = 'checked="checked"';
+                $sActPay = 'checked';
             }
             else
             {
                 $sActYes = '';
-                $sActNo = 'checked="checked"';
+                $sActNo = 'checked';
                 $sActPay = '';
             }
             ?>
